@@ -8,9 +8,10 @@ public class Launcher {
         Scanner variable = new java.util.Scanner(System.in);
         String mot = variable.nextLine();
 
-        if (!mot.equals("quit")) {
+        while (!mot.equals("quit")) {
             System.out.println("Unknown command");
+            variable = new java.util.Scanner(System.in);
+            mot = variable.nextLine();
         }
-        else{}
     }
 }
