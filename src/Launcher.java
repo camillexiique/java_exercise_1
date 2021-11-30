@@ -67,23 +67,34 @@ public class Launcher {
                 fichier = fichier.replaceAll("\"", " ");
                 fichier = fichier.replaceAll("\\(", " ");
                 fichier = fichier.replaceAll("\\)", " ");
+                fichier = fichier.replaceAll("-", " ");
+                fichier = fichier.replaceAll("\'", " ");
                 String[] tab = fichier.split(" ");
+
                 for (int i = 0; i < tab.length; i++){
                     tab[i] = tab[i].replaceAll(" ", "");
                 }
                 String[][] end = new String[tab.length][2];
+                for (int i = 0; i < end.length; i ++){
+                    end[i][0] = "";
+                    end[i][1] = "0";
+                }
                 int cmpt = 0;
 
                 for (int i = 0; i < tab.length; i++){
 
                     for (int j = 0; j < end.length; j++){
-                        if (tab[i].equals(end[j][1])){
+
+                        if (tab[i].equals(end[j][0])){
                             cmpt = cmpt+1;
-                            end[j][2] = String.valueOf(Integer.parseInt(end[j][2]) + 1);
+
+                            end[j][1] = String.valueOf(Integer.parseInt(end[j][1]) + 1);
+
                         }
-                        else if (end[j][1].equals("") && cmpt == 0){
-                            end[j][1] = tab[i];
-                            end[j][2] = "1";
+                        else if (end[j][0].equals("") && cmpt == 0){
+                            end[j][0] = tab[i];
+                            end[j][1] = "1";
+                            cmpt = cmpt + 1;
                         }
                     }
                     cmpt = 0;
@@ -92,9 +103,10 @@ public class Launcher {
                 int tmp2 = 0;
                 String word = "";
                 for (int i = 0; i < end.length; i++){
-                    if (Integer.parseInt(end[i][2]) > tmp2){
-                        tmp2 = Integer.parseInt(end[i][2]);
-                        word = end[i][1];
+
+                    if (Integer.parseInt(end[i][1]) > tmp2 && !end[i][0].equals("")){
+                        tmp2 = Integer.parseInt(end[i][1]);
+                        word = end[i][0];
                     }
                 }
 
