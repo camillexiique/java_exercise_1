@@ -68,6 +68,9 @@ public class Launcher {
                 fichier = fichier.replaceAll("\\(", " ");
                 fichier = fichier.replaceAll("\\)", " ");
                 String[] tab = fichier.split(" ");
+                for (int i = 0; i < tab.length; i++){
+                    tab[i] = tab[i].replaceAll(" ", "");
+                }
                 String[][] end = new String[tab.length][2];
                 int cmpt = 0;
 
